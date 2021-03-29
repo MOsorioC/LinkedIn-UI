@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:likedin_ui/core/constans/color_palette.dart';
+import 'package:flutter/services.dart';
+import 'package:likedin_ui/core/constants/color_palette.dart';
+import 'package:likedin_ui/core/utils/utils.dart';
+import 'package:likedin_ui/provider_resources.dart';
+import 'package:likedin_ui/ui/widgets/bottom_navigation_bar.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Linked In',
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        canvasColor: Colors.white,
-        accentColor: ColorPallete.titleColor,
+    return MultiProvider(
+      providers: providers,
+      child: MaterialApp(
+        title: 'Linked In',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          canvasColor: Colors.white,
+          accentColor: ColorPalette.titleColor,
+          brightness: Brightness.dark,
+        ),
+        home: MyHomePage(),
       ),
-      home: MyHomePage(),
     );
   }
 }
@@ -25,17 +34,21 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(Object context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ColorPallete.darkColor,
-        title: Text("Example"),
-      ),
-      body: SafeArea(
-        child: Column(
+
+        body: AnnotatedRegion<SystemUiOverlayStyle>(
+      value: Utils.darkSystemUiOverlayStyle(),
+      child: SafeArea(
+        child: Stack(
           children: [
-            Container(),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              color: Colors.grey.withOpacity(0.1),
+            ),
+            Positioned(bottom: 0, child: BottomNavigationBarView())
           ],
         ),
       ),
-    );
+    ));
   }
 }
