@@ -4,6 +4,7 @@ import 'package:likedin_ui/core/constants/color_palette.dart';
 import 'package:likedin_ui/core/utils/utils.dart';
 import 'package:likedin_ui/provider_resources.dart';
 import 'package:likedin_ui/ui/widgets/bottom_navigation_bar.dart';
+import 'package:likedin_ui/ui/widgets/header_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -32,9 +33,8 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   @override
-  Widget build(Object context) {
+  Widget build(BuildContext context) {
     return Scaffold(
-
         body: AnnotatedRegion<SystemUiOverlayStyle>(
       value: Utils.darkSystemUiOverlayStyle(),
       child: SafeArea(
@@ -44,6 +44,13 @@ class MyHomePage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               color: Colors.grey.withOpacity(0.1),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    HeaderView(),
+                  ],
+                ),
+              ),
             ),
             Positioned(bottom: 0, child: BottomNavigationBarView())
           ],
