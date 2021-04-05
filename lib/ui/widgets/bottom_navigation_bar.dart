@@ -52,7 +52,7 @@ class BottomNavigationBarView extends StatelessWidget {
                     ),
                   ),
                   Icon(
-                    bottomNavigationList[index][1],
+                    bottomNavigationList[index][1] as IconData,
                     size: 25,
                     color: homeViewModel.pageIndex == index
                         ? Colors.black
@@ -62,7 +62,7 @@ class BottomNavigationBarView extends StatelessWidget {
                     height: 2,
                   ),
                   Text(
-                    bottomNavigationList[index][0],
+                    bottomNavigationList[index][0] as String,
                     style: TextStyle(
                       color: homeViewModel.pageIndex == index
                           ? Colors.black
